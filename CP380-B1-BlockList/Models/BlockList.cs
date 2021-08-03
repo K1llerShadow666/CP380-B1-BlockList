@@ -24,14 +24,31 @@ namespace CP380_B1_BlockList.Models
 
         public void AddBlock(Block block)
         {
-            // TODO
+            var s = block.PreviousHash;
+            block.PreviousHash = s;
+            Chain.Add(block);
         }
 
         public bool IsValid()
         {
-            // TODO
+            int chains = Chain.Count;
+            var one = Chain[chains - 1].Hash;
+            var two = Chain[chains - 1].PreviousHash;
+            bool check = true ;
 
-            return false;
+            for(int i=1;i<Chain.Count;i++)
+            {
+                if ((Chain[chains - (i+1)].Hash).ToString() == (Chain[chains - i].PreviousHash).ToString().TrimStart('"').TrimEnd('"'))
+                {
+                    check = true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            return check;
         }
     }
 }

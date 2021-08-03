@@ -8,6 +8,10 @@ namespace CP380_B1_BlockList.Models
 
     public class Payload
     {
-        // TODO
+        // declaring fields to be used elsewhere
+        public string User;
+        public string Item;
+        public int Amount;
+        public TransactionTypes ttInfo;
     }
 }
